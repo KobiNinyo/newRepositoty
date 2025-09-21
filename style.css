@@ -1,0 +1,40 @@
+body {
+  text-align: center;
+  background-color: rgb(2, 2, 2);
+}
+
+table {
+  margin: 100px auto;
+}
+
+img {
+  background-color: transparent;
+}
+
+/* class  */
+.logo {
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.cell {
+  border: 0.5px solid rgba(233, 233, 233, 0);
+  padding: 10px;
+  width: 60px;
+}
+
+.board-container {
+  margin-top: -80px;
+}
+
+.hero-img {
+  height: 60px;
+}
+
+.alian-img {
+  height: 60px;
+}
+
+.laser-img {
+  height: 60px;
+}
