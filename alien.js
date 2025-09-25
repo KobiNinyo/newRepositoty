@@ -9,18 +9,21 @@ var gAliensTopRowIdx
 var gAliensBottomRowIdx
 var gIsAlienFreeze = true
 
-
 function createAliens(board, rowIdx, rowNum) {
   const startCol = Math.floor((BOARD_SIZE - ALIEN_ROW_LENGTH) / 2)
   const endCol = startCol + ALIEN_ROW_LENGTH
 
   for (var i = rowIdx; i < rowIdx + rowNum; i++) {
     for (var j = startCol; j < endCol; j++) {
-      board[i][j] = createCell(ALIEN)
+     (board[i][j] = createCell(ALIEN))
     }
   }
-  gGame.alienCount = rowNum * ALIEN_ROW_LENGTH
+    var cell = gGame.alienCount = rowNum * ALIEN_ROW_LENGTH
+
+  return cell
 }
+
+
 
 //TODO
 function handleAlienHit(pos) {}

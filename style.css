@@ -4,11 +4,35 @@ body {
 }
 
 table {
-  margin: 100px auto;
+  margin: 150px auto;
 }
 
 img {
   background-color: transparent;
+}
+
+h4 {
+  color: rgba(255, 255, 255, 0.164);
+  font-family: monospace;
+}
+
+h2 {
+  color: rgb(255, 213, 0);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgba(251, 251, 251, 0.057);
+
+  position: absolute;
+  left: 50%;
+  margin-bottom: 20px;
+  transform: translate(-50%, -50%);
+  padding: 10px 70px;
+  border-radius: 16px;
+
+  align-items: center;
+}
+
+h2 span {
+  color: rgb(0, 51, 255);
 }
 
 /* class  */
@@ -30,11 +54,33 @@ img {
 .hero-img {
   height: 60px;
 }
-
 .alian-img {
   height: 60px;
 }
-
 .laser-img {
+  height: 40px;
+}
+.hit-img {
   height: 60px;
 }
+
+.victory {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* .star-wars-img{
+  height: 100px;
+  width: 160px;
+} */

@@ -8,27 +8,30 @@ const ALIEN_ROW_COUNT = 3
 const HERO = 'HERO'
 const ALIEN = 'ALIEN'
 const LASER = 'LASER'
+const HIT = 'HIT'
 
-const HERO_IMG = `<img class="hero-img" src="img/HERO.png" alt="" />`
-const ALIEN_IMG = `<img class="alian-img" src="img/ALIEN.png" alt="">`
-const LASER_IMG = `<img class="laser-img" src="img/LASER.png" alt="">`
-
+const HERO_IMG = `<img class="hero-img" src="img/HERO.png" alt="hero" />`
+const ALIEN_IMG = `<img class="alian-img" src="img/ALIEN.png" alt="alian">`
+const LASER_IMG = `<img class="laser-img" src="img/LASER.png" alt="laser">`
+const HIT_IMG = `<img class="hit-img" src="img/HIT.png" alt="hit">`
 //type:
 const SKY = 'SKY'
-const GROUND = 'GROUND'
+const VICTORY = 240
 
 var gBoard
+var gAliensCell
 
 var gGame = {
   isOn: false,
   alienCount: 0,
+  score: 0,
 }
 
 // TODO Called when game loads
 function init() {
   gBoard = createBoard()
-  console.table(gBoard)
   renderBoard(gBoard)
+  gGame.isOn = true
 }
 
 function createBoard() {
@@ -41,8 +44,9 @@ function createBoard() {
       board[i][j] = createCell()
     }
   }
-  createAliens(board, 0, 3)
+  gAliensCell = createAliens(board, 0, 3)
   createHero(board)
+
   return board
 }
 
@@ -71,21 +75,35 @@ function createCell(gameObject = null) {
   }
 }
 
-// TODO position such as: {i: 2, j: 7}
 function updateCell(pos, gameObject = null) {
   var cell = gBoard[pos.i][pos.j]
   cell.gameObject = gameObject
 
   var elCell = getElCell(pos)
-  elCell.innerHTML = getGameObjectImg(cell)
+  elCell.innerHTML = getGameObjectImg(cell) || ''
 }
 
-function getGameObjectImg(cell) {
-  var innerHtmlImg = ''
+function updateScore(diff) {
+  //MODAL
+  gGame.score += diff
 
-  if (cell.gameObject === ALIEN) innerHtmlImg = ALIEN_IMG
-  else if (cell.gameObject === HERO) innerHtmlImg = HERO_IMG
-  else if (cell.gameObject === LASER) innerHtmlImg = LASER_IMG
-
-  return innerHtmlImg
+  //DOM
+  var elScore = document.querySelector('.score')
+  elScore.innerHTML = gGame.score
 }
+
+function victoryModal() {
+  var strHtml = `<h2>YOU WIN 🏆<button onclick="init()">Start Again</button></h2>`
+  var elModal = document.querySelector('.victory')
+  elModal.innerHTML = strHtml
+
+  elModal.style.display = 'block'
+}
+
+// function onRestart() {
+//   if ((gGame.isOn = false)) {
+//     init()
+//     var elModal = document.querySelector('.victory')
+//     elModal.style.display = 'none'
+//   }
+// }

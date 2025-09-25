@@ -7,6 +7,12 @@ var gHero = {
   isShoot: false,
 }
 
+var gLaser = {
+  id: null,
+  lastPos: null,
+  currPos: null,
+}
+
 function createHero(board) {
   board[gHero.pos.i][gHero.pos.j] = createCell(HERO)
 }
@@ -42,11 +48,11 @@ function moveHero(event) {
   const nextPos = onKeyDown(event)
 
   //MODAL
-
   if (nextPos === LASER) {
-     console.log('TEST')
+    shoot(gHero.pos)
     return
   }
+
   if (!nextPos) {
     updateCell(gHero.pos, HERO)
     console.log('WORNG BUTTON')
@@ -59,12 +65,50 @@ function moveHero(event) {
 }
 
 // Sets an interval for shutting (blinking) the laser up towards aliens
-function shoot() {}
+function shoot(pos) {
+  if (gHero.isShoot) return
+  gHero.isShoot = true
+  gLaser.lastPos = null
+  gLaser.currPos = { i: pos.i - 1, j: pos.j }
+
+  gLaser.id = setInterval(() => blinkLaser(), LASER_SPEED)
+}
 
 // renders a LASER at specific cell for short time and removes it
-// REMEMBER pos :gHero.pos.i ,gHero.pos.j , intrval + const LASER_SPEED = 80
-function blinkLaser(event) {
-  if (event) {
-    updateCell(gHero.pos.i--, LASER)
+function blinkLaser() {
+  if (gLaser.lastPos) updateCell(gLaser.lastPos, null)
+  if (gLaser.currPos.i < 0) return stopInterval()
+
+  const cell = gBoard[gLaser.currPos.i][gLaser.currPos.j]
+  console.log(cell)
+
+  if (cell && cell.gameObject === ALIEN) {
+    updateCell(gLaser.currPos, HIT)
+    updateScore(10)
+    stopInterval()
+
+    setTimeout(() => {
+      updateCell(gLaser.currPos, null)
+    }, 250)
+    console.log(gGame.score)
+
+    if (gGame.score === VICTORY) {
+      victoryModal()
+      gGame.isOn = false
+    }
+    return
   }
+
+  updateCell(gLaser.currPos, LASER)
+
+  gLaser.lastPos = { i: gLaser.currPos.i, j: gLaser.currPos.j }
+  gLaser.currPos = { i: gLaser.currPos.i - 1, j: gLaser.currPos.j }
+}
+
+function stopInterval() {
+  if (gLaser.id) {
+    clearInterval(gLaser.id)
+    gLaser.id = null
+  }
+  gHero.isShoot = false
 }
