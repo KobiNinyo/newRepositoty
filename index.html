@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>space invaders</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="init()" onkeyup="moveHero(event)">
+    <img class="logo" src="img/Space Invaders .jpg" alt="space Invaders" />
+
+    <h2 class="score-text">score: <span class="score"></span></h2>
+    <div class="btn-start"></div>
+
+    <div class="victory"></div>
+    <div class="lose"></div>
+    <div class="board-container"></div>
+    <!-- <button class="restart-btn" onclick="onRestart()">Start Again</button> -->
+
+    <h4>@Kobi-Ninyo</h4>
+    <script src="game.js"></script>
+    <script src="hero.js"></script>
+    <script src="alien.js"></script>
+    <script src="util.js"></script>
+  </body>
+</html>
