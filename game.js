@@ -161,7 +161,8 @@ function loseModal() {
  <h2 class="lose-text">WAS NOT WITH YOU THIS TIME</h2>
    <button onclick="onRestart()">Try Again</button>`
 
-  elModal.style.display = 'block'
+   
+   elModal.style.display = 'block'
 }
 
 function checkLose() {
