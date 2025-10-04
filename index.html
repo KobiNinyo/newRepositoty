@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide"
+    />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>space invaders</title>
@@ -8,14 +13,16 @@
   </head>
   <body onload="init()" onkeyup="moveHero(event)">
     <img class="logo" src="img/Space Invaders .jpg" alt="space Invaders" />
-
     <h2 class="score-text">score: <span class="score"></span></h2>
     <div class="btn-start"></div>
 
     <div class="victory"></div>
     <div class="lose"></div>
     <div class="board-container"></div>
-    <!-- <button class="restart-btn" onclick="onRestart()">Start Again</button> -->
+
+    <h3 class="spicel">Special Attack <span> -> press N + ␣</span></h3>
+    <h3 class="Super">Super Speed Shoot<span> -> press X</span></h3>
+    <h3 class="main-text">ONLY 3 SUPER & SPECIAL SHOTS!</h3>
 
     <h4>@Kobi-Ninyo</h4>
     <script src="game.js"></script>

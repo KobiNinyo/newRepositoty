@@ -8,34 +8,52 @@ const ALIEN_ROW_COUNT = 3
 const HERO = 'HERO'
 const ALIEN = 'ALIEN'
 const LASER = 'LASER'
+const LASERSPEED = 'LASERSPEED'
 const HIT = 'HIT'
+const SPACECANDIES = 'SPACECANDIES'
 
+// gameObject img
 const HERO_IMG = `<img class="hero-img" src="img/HERO.png" alt="hero" />`
 const ALIEN_IMG = `<img class="alian-img" src="img/ALIEN.png" alt="alian">`
 const LASER_IMG = `<img class="laser-img" src="img/LASER.png" alt="laser">`
+const LASER_SPEED_IMG = `<img class="laser-speed-img" src="img/LASER_SPEED.png" alt="laser">`
 const HIT_IMG = `<img class="hit-img" src="img/HIT.png" alt="hit">`
-//type:
-const SKY = 'SKY'
-const Victory = 220
+const SPACECANDIES_IMG = `<img class="candies-img" src="img/SPACECANDIES.jpg" alt="candies"`
+
 var gBoard
 var gAliensCell
+var gSpaceCandies
+
+var gGameSound = new Audio('star-wars-style-march-165111.mp3')
+var gWinSound = new Audio('Voicy_Star Wars Main Theme (Full).mp3')
+var gLoseSound = new Audio('Voicy_The Power Of The Darkside.mp3')
 
 var gGame = {
   isOn: false,
   alienCount: 0,
   score: 0,
+  superUse: 0,
 }
 
-// REMEMBER Called when game loads
+const SKY = 'SKY'
+const Victory = 230
+
 function init() {
+  gGameSound.currentTime = 0
+  gGameSound.play()
+
   gBoard = createBoard()
   renderBoard(gBoard)
   gGame.isOn = true
   startIntrval()
-  checkVictory(gBoard)
-  checkLose()
-}
+  gGame.score = 0
+  gGame.superUse = 3
 
+  gLaser.queueSuperSpeed = false
+  gLaser.armedSuperSpeed = false
+
+  checkVictory(gBoard)
+}
 function createBoard() {
   const size = BOARD_SIZE
   const board = []
@@ -46,12 +64,11 @@ function createBoard() {
       board[i][j] = createCell()
     }
   }
-  gAliensCell = createAliens(board, 0, 3)
+  gAliensCell = createAliens(board, 1, 3)
   createHero(board)
 
   return board
 }
-
 function renderBoard(board) {
   var strHtml = '<table><tbody>'
   for (var i = 0; i < board.length; i++) {
@@ -69,14 +86,12 @@ function renderBoard(board) {
   strHtml += '</tbody></table>'
   document.querySelector('.board-container').innerHTML = strHtml
 }
-
 function createCell(gameObject = null) {
   return {
     type: SKY,
     gameObject: gameObject,
   }
 }
-
 function updateCell(pos, gameObject = null) {
   var cell = gBoard[pos.i][pos.j]
   cell.gameObject = gameObject
@@ -84,7 +99,6 @@ function updateCell(pos, gameObject = null) {
   var elCell = getElCell(pos)
   elCell.innerHTML = getGameObjectImg(cell) || ''
 }
-
 function updateScore(diff) {
   //MODAL
   gGame.score += diff
@@ -97,7 +111,6 @@ function updateScore(diff) {
   var elScore = document.querySelector('.score')
   elScore.innerHTML = gGame.score
 }
-
 function victoryModal() {
   gGame.score = 0
   gGame.isOn = true
@@ -111,12 +124,16 @@ function victoryModal() {
    <button onclick="onRestart()">Play Again</button>`
 
   elModal.style.display = 'block'
-
-  init()
+  onwin()
+  // init()
 }
-
 function onRestart() {
-    init()
+  init()
+  gWinSound.pause()
+  gWinSound.currentTime = 0
+  gLoseSound.pause()
+  gLoseSound.currentTime = 0
+
   gGame.isOn = true
   var elModal = document.querySelector('.victory')
   var elBtn = document.querySelector('.btn-start')
@@ -131,18 +148,19 @@ function onRestart() {
   updateScore()
   init()
 }
-
 function renderStartButton() {
   var elBtn = document.querySelector('.btn-start')
-  console.log(elBtn)
 
   elBtn.innerHTML = ` 
-  <h2>WELCOME</h2>
-  <h2>TO PLAY CLICK </h2>
+  <h2 class="strt-text">Han & Chewie vs the galaxy</h2>
+  <h2>TO START CLICK </h2>
   <h2 class="point">⬇</h2>
-  <button onclick='onRestart()'class="start"> Start</button>`
+  <h3 class="main-winning">CHEWIE’S COUNTING ON YOU!<br>
+  HIT 230 POINTS OR BLOW UP EVERY FIRST ORDER SHIP!</h3>
+  
+  <button onclick='onRestart()'class="start"> Start</button>
+`
 }
-
 function checkVictory(board) {
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
@@ -151,24 +169,41 @@ function checkVictory(board) {
   }
   return true
 }
-
 function loseModal() {
+  onLose()
+  gGame.isOn = false
   gIsAlienFreeze
+
   var elModal = document.querySelector('.lose')
   elModal.innerHTML = `
   <h2>Game Over!</h2>
   <h2 class="lose-text">THE FORCE</h2>
- <h2 class="lose-text">WAS NOT WITH YOU THIS TIME</h2>
-   <button onclick="onRestart()">Try Again</button>`
+  <h2 class="lose-text">WAS NOT WITH YOU THIS TIME..</h2>
+  <button onclick="onRestart()">Try Again</button>`
 
-   
-   elModal.style.display = 'block'
+  elModal.style.display = 'block'
 }
-
 function checkLose() {
   const { i, j } = gHero.pos
   const cell = gBoard[i][j]
   return cell && cell.gameObject === ALIEN
+}
+function onwin() {
+  gGameSound.pause()
+  gGameSound.currentTime = 0
+
+  gWinSound.currentTime = 0
+  gWinSound.play()
+}
+function onLose() {
+  gGameSound.pause()
+  gGameSound.currentTime = 0
+
+  gWinSound.pause()
+  gWinSound.currentTime = 0
+
+  gLoseSound.currentTime = 0
+  gLoseSound.play()
 }
 
 window.onload = renderStartButton

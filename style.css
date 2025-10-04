@@ -1,49 +1,48 @@
 body {
+  font-family: 'Audiowide', sans-serif;
+
   text-align: center;
   background-color: rgb(2, 2, 2);
 }
-
 table {
   margin: 150px auto;
 }
-
 img {
   background-color: transparent;
 }
+h3 {
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
+  font-family: 'Audiowide', sans-serif;
 
+  position: fixed;
+  top: 90%;
+  left: 30px;
+  font-size: 10px;
+}
 h4 {
-   color: rgb(0, 247, 255);
-  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(250, 250, 255);  font-family: monospace;
-}
-
-.score-text { 
-  font-family: 'Press Start 2P', monospace;
-  font-size: 24px;
-   color: rgb(0, 247, 255);
-  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(250, 250, 255);
-  position: absolute;
+  color: rgb(0, 247, 255);
+  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(152, 152, 152);
+  font-family: 'Audiowide', sans-serif;
+  padding: 15px 20px;
+  position: fixed;
+  bottom: 10px;
   left: 50%;
-  margin-bottom: 20px;
-  transform: translate(-50%, -50%);
-  padding: 10px 70px;
-  border-radius: 16px;
+  transform: translateX(-50%);
+  
 
-  align-items: center;
-  z-index: 10;
 }
-
 h2 span {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: rgb(255, 221, 0);
-  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(250, 250, 255);
+  font-family: 'Audiowide', sans-serif;
+
+  color: rgb(0, 247, 255);
+  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(152, 152, 152);
   z-index: 10;
 }
-
 /* class  */
 
 .logo {
-  height: 150px;
+  height: 120px;
   margin-bottom: 10px;
 }
 .cell {
@@ -54,7 +53,6 @@ h2 span {
   position: relative;
   overflow: hidden;
 }
-
 .cell img {
   width: 100%;
   height: 100%;
@@ -63,11 +61,9 @@ h2 span {
   top: 0;
   left: 0;
 }
-
 .board-container {
   margin-top: -80px;
 }
-
 .hero-img {
   height: 60px;
 }
@@ -80,11 +76,14 @@ h2 span {
 .hit-img {
   height: 60px;
 }
+.candies-img {
+  height: 60px;
+}
 .victory {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Audiowide', sans-serif;
   font-size: 24px;
-  color: rgb(255, 230, 0);
-  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(250, 250, 255);
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
 
   position: absolute;
   left: 50%;
@@ -94,33 +93,31 @@ h2 span {
   align-items: center;
   z-index: 10;
 }
-
 .victory button {
   background-color: rgba(28, 28, 28, 0.996);
   margin-top: 20px;
   border-radius: 30px;
   padding: 10px 40px;
 
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Audiowide', sans-serif;
+
   font-weight: bold;
 
   font-size: 20px;
-  color: rgb(0, 247, 255);
-  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(250, 250, 255);
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
   cursor: pointer;
 
   animation: blink 3.5s infinite;
 }
-
 .win {
   font-weight: bold;
   font-size: 35px;
   color: rgb(0, 247, 255);
-  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(250, 250, 255);
+  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(152, 152, 152);
   /* animation: blink 6s infinite; */
   z-index: 10;
 }
-
 @keyframes blink {
   0%,
   50%,
@@ -132,52 +129,55 @@ h2 span {
     opacity: 0;
   }
 }
-
+.strt-text {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: bold;
+  color: rgb(0, 247, 255);
+  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(152, 152, 152);
+}
 .btn-start {
-  font-family: 'Press Start 2P', monospace;
   font-size: 24px;
-  color: rgb(255, 221, 0);
-  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(250, 250, 255);
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
   background-color: rgb(2, 2, 2);
 
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  padding: 50px 70px;
+  padding: 50px 55px;
   border-radius: 16px;
   cursor: pointer;
 
   align-items: center;
   z-index: 10;
 }
-
 .btn-start button {
   background-color: rgba(28, 28, 28, 0.996);
   margin-top: 20px;
   border-radius: 30px;
   padding: 10px 40px;
+  font-family: 'Audiowide', sans-serif;
 
-  font-family: 'Press Start 2P', monospace;
   font-weight: bold;
 
   font-size: 20px;
-  color: rgb(0, 247, 255);
-  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(250, 250, 255);
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
   cursor: pointer;
   animation: blink 3.5s infinite;
 }
-
 .point {
-  color: rgb(0, 247, 255);
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.984), 0 0 10px rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
+  text-align: center;
+  animation: blink 3.5s infinite;
 }
-
 .restart-btn {
   display: none;
   background-color: rgba(28, 28, 28, 0.996);
   border-radius: 30px;
   padding: 10px 40px;
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Audiowide', sans-serif;
   font-weight: bold;
 
   font-size: 15px;
@@ -192,47 +192,103 @@ h2 span {
   padding: 10px 35px;
   cursor: pointer;
 }
-
 .lose {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Audiowide', sans-serif;
   font-size: 24px;
   color: rgb(255, 0, 0);
-  text-shadow: 0 0 5px rgb(14, 14, 14), 0 0 10px rgb(250, 250, 255);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
+  background-color: rgba(2, 2, 2, 0);
 
   position: absolute;
   left: 50%;
   transform: translate(-50%, 60%);
   padding: 5px 70px;
   border-radius: 16px;
-  align-items: center; 
+  align-items: center;
   display: none;
   z-index: 10;
 }
-
-.lose button{
+.lose button {
   background-color: rgba(28, 28, 28, 0.996);
-  margin-top: 20px;
+  margin-top: 10px;
   border-radius: 30px;
   padding: 10px 40px;
 
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Audiowide', sans-serif;
   font-weight: bold;
 
   font-size: 20px;
-  color: rgb(0, 247, 255);
-  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(250, 250, 255);
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
   cursor: pointer;
 
   animation: blink 3.5s infinite;
 }
-
-.lose-text{
+.lose-text {
   font-weight: bold;
   font-size: 35px;
-  color: rgb(171, 2, 255);
-  text-shadow: 0 0 5px rgba(16, 16, 16, 0.868),
-    0 0 10px rgba(253, 253, 255, 0.825);
-  /* animation: blink 6s infinite; */
+  color: rgb(0, 255, 81);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
   z-index: 10;
+}
+.Super span {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: bold;
+  color: rgb(0, 247, 255);
+  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(152, 152, 152);
+  position: fixed;
+}
+.spicel span {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: bold;
+  color: rgb(0, 247, 255);
+  text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px rgb(152, 152, 152);
+  position: fixed;
+  font-size: 15px;
+}
+.score-text {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 24px;
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
+  position: absolute;
+  left: 50%;
+  margin-bottom: 20px;
+  transform: translate(-50%, -50%);
+  padding: 10px 70px;
+  border-radius: 16px;
 
+  align-items: center;
+  z-index: 10;
+}
+.Super {
+  color: rgb(255, 0, 0);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
+  font-family: 'Audiowide', sans-serif;
+  font-size: 15px;
+  position: fixed;
+  top: 87%;
+  left: 30px;
+}
+.spicel {
+  font-size: 15px;
+}
+.main-text {
+  color: rgb(0, 255, 81);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
+  font-family: 'Audiowide', sans-serif;
+
+  font-size: 17px;
+  position: fixed;
+  top: 93%;
+  /* left: 50%; */
+  animation: blink 3.5s infinite;
+}
+.main-winning {
+color: rgb(0, 255, 81);
+  text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 10px rgb(217, 0, 255);
+  position: absolute;
+  left: 50%;
+  font-size: 13px;
+  transform: translateX(-50%);
 }

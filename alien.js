@@ -114,6 +114,7 @@ function moveAliens() {
 
   if (checkLose()) {
     loseModal()
+    clearInterval(gIntervalAliens)
     return
   }
 
@@ -125,3 +126,6 @@ function startIntrval() {
   }
   gIntervalAliens = setInterval(() => moveAliens(), ALIEN_SPEED)
 }
+
+
+
